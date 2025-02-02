@@ -12,8 +12,10 @@ func StartListening() {
 		WriteTimeout: 10 * time.Second,
 	}
 	app := fiber.New(configs)
-	app.Get("/links", GetLinks)
+	app.Get("/links/:chatId", GetLinks)
+	app.Post("/links", Save)
+	app.Delete("/links", Clear)
 	if err := app.Listen(":8080"); err != nil {
-		log.Fatal(err)
+		log.Fatal("Error start web app", err)
 	}
 }

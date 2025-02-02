@@ -6,6 +6,6 @@ type (
 		Link   string `json:"link"`
 	}
 	LinksResponse struct {
-		Link string `json:"link"`
+		Links []string `json:"links"`
 	}
 )

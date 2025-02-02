@@ -1,0 +1,12 @@
+
+GET http://localhost:8080/links/1
+
+
+###
+POST http://localhost:8080/links
+Content-Type: application/json
+
+{"chatId": "1", "link": "https://www.jetbrains.com/"}
+
+###
+DELETE http://localhost:8080/links?chatId=1
