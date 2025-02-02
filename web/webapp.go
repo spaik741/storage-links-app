@@ -1,10 +1,14 @@
 package web
 
 import (
+	"fmt"
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/log"
+	"os"
 	"time"
 )
+
+const port = "APP_PORT"
 
 func StartListening() {
 	configs := fiber.Config{
@@ -15,7 +19,7 @@ func StartListening() {
 	app.Get("/links/:chatId", GetLinks)
 	app.Post("/links", Save)
 	app.Delete("/links", Clear)
-	if err := app.Listen(":8080"); err != nil {
+	if err := app.Listen(fmt.Sprintf(":%s", os.Getenv(port))); err != nil {
 		log.Fatal("Error start web app", err)
 	}
 }

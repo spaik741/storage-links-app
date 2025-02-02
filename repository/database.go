@@ -5,12 +5,15 @@ import (
 	"github.com/gofiber/fiber/v3/log"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"os"
 )
 
 var LinksCollection *mongo.Collection
 
+const url = "MONGO_URL"
+
 func ConnectDB() {
-	client, err := mongo.Connect(nil, options.Client().ApplyURI("mongodb://admin:password@127.0.0.1:27017/"))
+	client, err := mongo.Connect(nil, options.Client().ApplyURI(os.Getenv(url)))
 	if err != nil {
 		log.Fatal("Error connect to mongoDB", err)
 	}

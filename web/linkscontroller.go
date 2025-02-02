@@ -2,7 +2,6 @@ package web
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/gofiber/fiber/v3"
 	"log"
 	"storage-links-app/models"
@@ -18,7 +17,7 @@ func GetLinks(ctx fiber.Ctx) error {
 	}
 	links := linksEntity.Links
 	if links == nil || len(links) == 0 {
-		return ctx.Status(fiber.StatusNotFound).SendString(fmt.Sprintf("Not Found links by chatId: %s", chatId))
+		return ctx.JSON(models.LinksResponse{Links: make([]string, 0)})
 	}
 	linksResponse := models.LinksResponse{
 		Links: links,
